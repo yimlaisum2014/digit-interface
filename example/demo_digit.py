@@ -19,7 +19,7 @@ print("Connected DIGIT's to Host:")
 pprint.pprint(digits)
 
 # Connect to a Digit device with serial number with friendly name
-digit = Digit("D12345", "Left Gripper")
+digit = Digit("D20365", "Left Gripper")
 digit.connect()
 
 # Print device info
