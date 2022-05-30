@@ -132,7 +132,6 @@ def collect(trial, samples, ignore, output, r, g, b):
             right = f'right_{idx}.png'
             c.digit_left.save_frame(path=os.path.join(output, left))
             c.digit_right.save_frame(path=os.path.join(output, right))
-            idx += 1
 
     c.disconnect()
 
