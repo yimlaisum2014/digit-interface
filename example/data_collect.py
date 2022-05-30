@@ -68,6 +68,12 @@ class Collect(object):
             # set fps
             camera.set_fps(15)
 
+    def set_intensity(self, r, g, b):
+
+        for camera in {self.digit_right, self.digit_left}:
+            if camera is not None:
+                camera.set_intensity_rgb(r, g, b)
+
     def disconnect(self):
         self.digit_left.disconnect()
         self.digit_right.disconnect()
@@ -103,8 +109,14 @@ class Collect(object):
 @click.option('-i', '--ignore', required=False, type=click.INT, default=0, show_default=True,
               help='Ignore first n images')
 @click.option('-o', '--output', required=True, type=click.Path(file_okay=False, dir_okay=True), help='Output folder')
-def collect(trial, samples, ignore, output):
+@click.option('-r', required=False, type=click.INT, default=5, show_default=True, help='Intensity of red')
+@click.option('-g', required=False, type=click.INT, default=5, show_default=True, help='Intensity of green')
+@click.option('-b', required=False, type=click.INT, default=5, show_default=True, help='Intensity of blue')
+def collect(trial, samples, ignore, output, r, g, b):
     c = Collect()
+
+    c.set_intensity(r, g, b)
+
     output = os.path.join(output, trial)
     if not os.path.exists(output):
         os.makedirs(output)
